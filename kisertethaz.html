@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+    <title>Kísértetház</title>
+  </head>
+  <body>
+    <h1>Kísértetház</h1>
+
+    3 ajtó van előtted, az egyik mögött szellem van.
+    Melyiket válaszod? 
+
+    <input type="button" onClick="javascript:ajto(1);" value="1. ajtó" />
+    <input type="button" onClick="javascript:ajto(2);" value="2. ajtó" />
+    <input type="button" onClick="javascript:ajto(3);" value="3. ajtó" />
+
+    <script type="text/javascript">
+
+    var ajto = function(ajto_szam) {
+
+    var szellem_ajto = Math.random();
+    szellem_ajto = Math.floor(szellem_ajto * 3) + 1;
+    console.log('szellem_ajto:' + szellem_ajto);
+    console.log('ajto_szam:' + ajto_szam);
+    if (ajto_szam == szellem_ajto) {
+      alert('Elkapott a szellem!!!');
+    } else {
+      alert('Szerencséd volt, nincs szellem az ' + ajto_szam + '. ajtó mögött!');
+    }
+
+    }
+
+
+    </script>
+
+  </body>
+</html>

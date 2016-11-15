@@ -1,0 +1,66 @@
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+</head>
+<body>
+<h1>PV matek web</h1>
+
+Szorzandók legfeljebb 1 és 
+<input type="text" id="legnagyobb" value="10" /> között.
+
+<input type="button" onClick="javascript:ujkerdes();" value="Új kérdés" />
+
+<h2>szorzandók</h2>
+
+Mennyi <input type="text" id="szorzando1" value="" disabled /> szorozva 
+<input type="text" id="szorzando2" value="" disabled />?
+
+<input type="text" id="valasz" value=""/>
+
+<input type="button" value="Beküld" onClick="javascript:ellenoriz(); false" />
+
+<script type="text/javascript">
+
+var veletlenszam1;
+var veletlenszam2;
+
+var ujkerdes = function() {
+
+  var valasz = window.document.getElementById('valasz');
+  valasz.value='';
+
+  var legnagyobb = window.document.getElementById('legnagyobb');
+  legnagyobb = legnagyobb.value;
+
+  veletlenszam1 = Math.random();
+  veletlenszam1 = Math.floor(veletlenszam1 * legnagyobb) + 1;
+  var div1 = window.document.getElementById('szorzando1');
+  div1.setAttribute('value', veletlenszam1);
+
+  veletlenszam2 = Math.random();
+  veletlenszam2 = Math.floor(veletlenszam2 * legnagyobb) + 1;
+  var div2 = window.document.getElementById('szorzando2');
+  div2.setAttribute('value', veletlenszam2);
+
+}
+
+var ellenoriz = function() {
+
+  var valasz = window.document.getElementById('valasz');
+  valasz = valasz.value;  
+
+  if ( veletlenszam1 * veletlenszam2 == valasz ) {
+    alert('Helyes valasz!');
+    ujkerdes();
+  }else{
+    alert('Elrontottad! ' + veletlenszam1 + ' * ' + veletlenszam2 + ' nem egyenlo ' + valasz);
+  }
+
+}
+
+ujkerdes();
+
+</script>
+
+</body>
+</html>
