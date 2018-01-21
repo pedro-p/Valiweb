@@ -1,0 +1,124 @@
+<html>
+  <head>
+    <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+    <title>English words test. Class 5, 1st half.</title>
+  </head>
+  <body>
+    <h1>English words test. Class 5, 1st half.</h1>
+
+    <h2 id="message">Type the word in english!</h2>
+    <h2 id="hungarian"></h2>
+    <input type="text" id="english" />
+    <input type="button" onClick="javascript:test_word();" value="Go!" id="go" />
+
+    <script type="text/javascript">
+
+    var words = {
+      'alma': 'apple',
+      'Ausztrália': 'Australia',
+      'kuka': 'bin',
+      'fekete': 'black',
+      'kék': 'blue',
+      'fedélzet': 'board',
+      'könyv': 'book',
+      'Meg tudnád ismételni kérlek?': 'Can you repeat that please?',
+      'Kanada': 'Canada',
+      'kanadai': 'Canadian',
+      'szék': 'chair',
+      'osztályterem': 'classroom',
+      'Csukjátok be a könyveiteket!': 'Close your books!',
+      'szín': 'colour',
+      'iskolapad': 'desk',
+      'ajtó': 'door',
+      'zöld': 'green',
+      'szürke': 'grey',
+      'szia': 'hi',
+      'Hogy mondod angolul?': 'How do you say inn English?',
+      'Írország': 'Ireland',
+      'ír': 'Irish',
+      'figyelj': 'listen',
+      'mobiltelefon': 'mobile phone',
+      'Új-Zéland': 'New Zealand',
+      'toll': 'pen',
+      'ceruza': 'pencil',
+      'tolltartó': 'pencil case',
+      'rózsaszín': 'pink',
+      'narancssárga': 'orange',
+      'lila': 'purple',
+      'piros': 'red',
+      'radír': 'rubber',
+      'vonalzó': 'ruler',
+      'hegyező': 'sharpener',
+      'esernyő': 'umbrella',
+      'Brazil': 'Brazil',
+      'brazil': 'Brazilian',
+      'Kína': 'China',
+      'kínai': 'Chinese',
+      'Egyiptom': 'Egypt',
+      'egyiptomi': 'Egyptian',
+      'Görögország': 'Greece',
+      'görög': 'Greek',
+      'Mexikó': 'Mexico',
+      'mexikói': 'Mexican',
+      'nemzetiség': 'nationality',
+      'Lengyelország': 'Poland',
+      'lengyel': 'Polish',
+      'Spanyolország': 'Spain',
+      'spanyol': 'Spanish',
+      'vezetéknév': 'surname',
+      'iskolatárs': 'classmate',
+      'földrajz': 'geography',
+    };
+
+    var shuffle = function(keys) {
+      shuffled = [];
+      original_length = keys.length;
+      for (var i = 0; i < original_length; i++) {
+        var j = Math.floor(Math.random() * (keys.length));
+        shuffled.push(keys[j]);
+        keys.splice(j, 1);
+      }
+      return shuffled;
+    }
+
+    var words_count = Object.keys(words).length;
+    var keys = [];
+    var i = 0;
+    for (var key in words) {
+      keys[i] = key;
+      i++;
+    }
+    i=0;
+    keys = shuffle(keys);
+
+    var next_word = function() {
+      document.getElementById('hungarian').innerHTML = keys[i];
+      i++;
+      if (i > words_count) {
+        document.getElementById('message').innerHTML = 'Congratulations! Test completed. Reload to try again.';
+        document.getElementById('hungarian').innerHTML = '';
+        document.getElementById('english').disabled = true;
+        document.getElementById('go').disabled = true;
+      }
+    }
+    next_word();
+
+    var test_word = function() {
+      if (document.getElementById('english').value == words[keys[i-1]]) {
+        document.getElementById('message').innerHTML = 'Correct!';
+        document.getElementById('english').value = '';
+        next_word();
+      }
+      else{
+        document.getElementById('message').innerHTML = 'Not correct, please try again!';
+      }
+    }
+
+    document.getElementById('english').addEventListener('keypress', function(event) {
+      if (event.keyCode === 13) document.getElementById('go').click();
+    });
+
+    </script>
+
+  </body>
+</html>
