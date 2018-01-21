@@ -10,6 +10,8 @@
     <h2 id="hungarian"></h2>
     <input type="text" id="english" />
     <input type="button" onClick="javascript:test_word();" value="Go!" id="go" />
+    <input type="button" onClick="javascript:help();" value="I give up, please help!" id="helpbutton" />
+    <h3 id="helptext"></h3>
 
     <script type="text/javascript">
 
@@ -33,7 +35,7 @@
       'zöld': 'green',
       'szürke': 'grey',
       'szia': 'hi',
-      'Hogy mondod angolul?': 'How do you say inn English?',
+      'Hogy mondod angolul?': 'How do you say in English?',
       'Írország': 'Ireland',
       'ír': 'Irish',
       'figyelj': 'listen',
@@ -67,8 +69,10 @@
       'spanyol': 'Spanish',
       'vezetéknév': 'surname',
       'iskolatárs': 'classmate',
-      'földrajz': 'geography',
+      'földrajz': 'Geography',
     };
+
+    document.getElementById('helpbutton').style.display = 'none'; 
 
     var shuffle = function(keys) {
       shuffled = [];
@@ -94,6 +98,7 @@
     var next_word = function() {
       document.getElementById('hungarian').innerHTML = keys[i];
       i++;
+      document.getElementById('helptext').innerHTML = '';
       if (i > words_count) {
         document.getElementById('message').innerHTML = 'Congratulations! Test completed. Reload to try again.';
         document.getElementById('hungarian').innerHTML = '';
@@ -107,11 +112,18 @@
       if (document.getElementById('english').value == words[keys[i-1]]) {
         document.getElementById('message').innerHTML = 'Correct!';
         document.getElementById('english').value = '';
+        document.getElementById('helpbutton').style.display = 'hide'; 
         next_word();
       }
       else{
         document.getElementById('message').innerHTML = 'Not correct, please try again!';
+        document.getElementById('helpbutton').style.display = 'block'; 
       }
+    }
+    
+    var help = function() {
+      document.getElementById('helptext').innerHTML = words[keys[i-1]];
+      document.getElementById('helpbutton').style.display = 'none'; 
     }
 
     document.getElementById('english').addEventListener('keypress', function(event) {
